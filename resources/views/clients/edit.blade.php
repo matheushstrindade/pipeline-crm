@@ -3,18 +3,18 @@
 @section('title', 'CRM - Editar Cliente')
 
 @section('content')
-    <div class="w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl p-10 border border-gray-200">
-        <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-10">{{ $client->name }}</h2>
+    <div class="w-full max-w-2xl mx-auto bg-gray-800 rounded-3xl shadow-2xl p-10 border border-gray-700">
+        <h2 class="text-3xl font-extrabold text-center text-white mb-10">{{ $client->name }}</h2>
 
         {{-- Mensagens --}}
         @if(session('success'))
-            <div class="bg-green-50 border border-green-200 text-green-700 px-5 py-3 rounded-xl mb-6 text-sm font-medium">
+            <div class="bg-green-900 border border-green-700 text-green-100 px-5 py-3 rounded-xl mb-6 text-sm font-medium">
                 {{ session('success') }}
             </div>
         @endif
 
         @if($errors->any())
-            <div class="bg-red-50 border border-red-200 text-red-700 px-5 py-3 rounded-xl mb-6 text-sm">
+            <div class="bg-red-900/20 border border-red-800 text-red-400 px-5 py-3 rounded-xl mb-6 text-sm">
                 <ul class="list-disc list-inside space-y-1">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -30,20 +30,20 @@
             {{-- CPF e Nome --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">CPF</label>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">CPF</label>
                     <input type="text" id="cpf" name="cpf" value="{{ preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4',$client->cpf) }}" required
-                           class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 shadow-sm">
+                           class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">
                     @error('cpf')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Nome</label>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">Nome</label>
                     <input type="text" name="name" value="{{ $client->name }}" required
-                           class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 shadow-sm">
+                           class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">
                     @error('name')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
@@ -51,49 +51,49 @@
             {{-- Email e Telefone --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">E-mail</label>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">E-mail</label>
                     <input type="email" name="email" value="{{ $client->email }}" required
-                           class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 shadow-sm">
+                           class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">
                     @error('email')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Telefone</label>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">Telefone</label>
                     <input type="text" id="phone" name="phone" value="{{ preg_replace('/(\d{2})(\d{5})(\d{4})/', '($1) $2-$3', $client->phone) }}" required
-                           class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 shadow-sm">
+                           class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">
                     @error('phone')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
 
             {{-- Endereço, Cidade, Estado --}}
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Endereço</label>
+                <label class="block text-sm font-semibold text-gray-300 mb-2">Endereço</label>
                 <input type="text" name="address" value="{{ $client->address }}" required
-                       class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 shadow-sm">
+                       class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">
                 @error('address')
-                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Cidade</label>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">Cidade</label>
                     <input type="text" name="city" value="{{ $client->city }}" required
-                           class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 shadow-sm">
+                           class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">
                     @error('city')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-2">Estado</label>
+                    <label class="block text-sm font-semibold text-gray-300 mb-2">Estado</label>
                     <select name="state" required
-                            class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 text-gray-800 shadow-sm">
-                        <option value="">Selecione o Estado</option>
+                            class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm">
+                        <option value="" class="text-gray-500">Selecione o Estado</option>
                         @foreach ([
                             'AC' => 'Acre', 'AL' => 'Alagoas', 'AP' => 'Amapá', 'AM' => 'Amazonas',
                             'BA' => 'Bahia', 'CE' => 'Ceará', 'DF' => 'Distrito Federal', 'ES' => 'Espírito Santo',
@@ -107,18 +107,18 @@
                         @endforeach
                     </select>
                     @error('state')
-                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
 
             {{-- Redes Sociais --}}
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Redes Sociais</label>
+                <label class="block text-sm font-semibold text-gray-300 mb-2">Redes Sociais</label>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                     <select id="social-network-select" name="social_networks"
-                            class="border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-3 py-2 shadow-sm w-full">
-                        <option value="">Rede social</option>
+                            class="bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-3 py-2 shadow-sm w-full">
+                        <option value="" class="text-gray-500">Rede social</option>
                         @foreach($social_networks as $social_network)
                             <option value="{{ $social_network->id }}" {{ old('$social_network_id') == $social_network->id ? 'selected' : '' }}>
                                 {{ $social_network->name }}
@@ -126,8 +126,8 @@
                         @endforeach
                     </select>
                     <input type="url" id="social-network-url" placeholder="URL da rede social"
-                           class="border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-3 py-2 shadow-sm w-full">
-                    <button type="button" id="add-social-network" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl shadow-lg transition cursor-pointer">
+                           class="bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-3 py-2 shadow-sm w-full placeholder-gray-500">
+                    <button type="button" id="add-social-network" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-4 py-2 rounded-xl shadow-lg shadow-orange-900/20 transition cursor-pointer">
                         + Adicionar
                     </button>
                 </div>
@@ -135,9 +135,9 @@
                 <ul id="social-network-list" class="space-y-2">
                     @if ($client->socialNetworks->isNotEmpty())
                         @foreach($client->socialNetworks as $i => $social_network)
-                            <li class="flex items-center justify-between bg-gray-100 px-4 py-2 rounded-xl shadow-sm">
-                                <span>{{ $social_network->name }}: <a href="{{ $social_network->pivot->profile_url }}" target="_blank" class="text-indigo-600 hover:underline">{{ $social_network->pivot->profile_url }}</a></span>
-                                <button type="button" class="text-red-600 font-bold px-2 py-1 hover:bg-red-100 rounded" onclick="this.parentElement.remove()">X</button>
+                            <li class="flex items-center justify-between bg-gray-900 border border-gray-700 px-4 py-2 rounded-xl shadow-sm">
+                                <span class="text-gray-300">{{ $social_network->name }}: <a href="{{ $social_network->pivot->profile_url }}" target="_blank" class="text-orange-500 hover:underline">{{ $social_network->pivot->profile_url }}</a></span>
+                                <button type="button" class="text-red-500 font-bold px-2 py-1 hover:bg-red-900/50 rounded" onclick="this.parentElement.remove()">X</button>
                                 <input type="hidden" name="social_networks[{{ $i }}][id]" value="{{ $social_network->pivot->social_network_id }}">
                                 <input type="hidden" name="social_networks[{{ $i }}][profile_url]" value="{{ $social_network->pivot->profile_url }}">
                             </li>
@@ -148,18 +148,18 @@
 
             {{-- Origem do Contato --}}
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2">Origem do Contato</label>
+                <label class="block text-sm font-semibold text-gray-300 mb-2">Origem do Contato</label>
                 <select name="contact_source_id" required
-                        class="w-full border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-xl px-5 py-3 text-gray-800 shadow-sm">
-                    <option value="">Selecione a origem</option>
+                        class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm">
+                    <option value="" class="text-gray-500">Selecione a origem</option>
                     @foreach($contact_sources as $contact_source)
                         <option value="{{ $contact_source->id }}" {{ $client->contact_source_id == $contact_source->id ? 'selected' : '' }}>
-                        {{ $contact_source->description }}
+                            {{ $contact_source->description }}
                         </option>
                     @endforeach
                 </select>
                 @error('contact_source')
-                <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -168,7 +168,7 @@
                 {{-- Voltar --}}
                 <div class="space-x-3">
                     <a href="{{ route('clients.index') }}"
-                       class="inline-block mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                       class="inline-block mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
                         Voltar
                     </a>
                 </div>
@@ -178,7 +178,7 @@
                     <button type="submit"
                             name="action"
                             value="update"
-                            class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition transform hover:scale-[1.02] cursor-pointer">
+                            class="inline-block mt-4 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-orange-900/20 transition transform hover:scale-[1.02] cursor-pointer">
                         Atualizar Cadastro
                     </button>
                 </div>
@@ -235,11 +235,11 @@
 
             // Cria elemento da lista
             const li = document.createElement('li');
-            li.className = "flex items-center justify-between bg-gray-100 px-4 py-2 rounded-xl shadow-sm";
+            li.className = "flex items-center justify-between bg-gray-900 border border-gray-700 px-4 py-2 rounded-xl shadow-sm";
 
             li.innerHTML = `
-            <span>${networkName}: <a href="${profileUrl}" target="_blank" class="text-indigo-600 hover:underline">${profileUrl}</a></span>
-            <button type="button" class="text-red-600 font-bold px-2 py-1 hover:bg-red-100 rounded" onclick="this.parentElement.remove()">X</button>
+            <span class="text-gray-300">${networkName}: <a href="${profileUrl}" target="_blank" class="text-orange-500 hover:underline">${profileUrl}</a></span>
+            <button type="button" class="text-red-500 font-bold px-2 py-1 hover:bg-red-900/50 rounded" onclick="this.parentElement.remove()">X</button>
             <input type="hidden" name="social_networks[${index}][id]" value="${networkId}">
             <input type="hidden" name="social_networks[${index}][profile_url]" value="${profileUrl}">
             `;
@@ -254,4 +254,3 @@
         });
     </script>
 @endsection
-

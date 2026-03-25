@@ -6,18 +6,18 @@
     <div class="w-full max-w-4xl mx-auto space-y-10">
 
         {{-- CARD PRINCIPAL --}}
-        <div class="bg-white rounded-3xl shadow-2xl p-10 border border-gray-200">
+        <div class="bg-gray-800 rounded-3xl shadow-2xl p-10 border border-gray-700">
 
             {{-- Título --}}
-            <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-10 tracking-tight">
+            <h2 class="text-4xl font-extrabold text-center text-white mb-10 tracking-tight">
                 {{ $lead->title }}
             </h2>
 
             <div class="space-y-8">
                 {{-- Descrição --}}
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Descrição</label>
-                    <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-4 shadow-sm bg-gray-50 leading-relaxed">
+                    <label class="block text-sm font-semibold text-gray-300 mb-1">Descrição</label>
+                    <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-4 shadow-sm bg-gray-900 text-gray-200 leading-relaxed">
                         {{ $lead->description }}
                     </p>
                 </div>
@@ -25,21 +25,21 @@
                 {{-- Cliente / Responsável --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Cliente</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">{{ $lead->client->name }}</p>
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Cliente</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">{{ $lead->client->name }}</p>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Responsável</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">{{ $lead->owner->name }}</p>
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Responsável</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">{{ $lead->owner->name }}</p>
                     </div>
                 </div>
 
                 {{-- Status / Estágio --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Status</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Status</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">
                             @switch($lead->status)
                                 @case('new') Nova @break
                                 @case('on_going') Em andamento @break
@@ -50,43 +50,43 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Estágio do Pipeline</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">{{ $lead->pipelineStage->name }}</p>
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Estágio do Pipeline</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">{{ $lead->pipelineStage->name }}</p>
                     </div>
                 </div>
 
                 {{-- Interesse / Data --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nível de Interesse</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">{{ $lead->interest_levels }}</p>
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Nível de Interesse</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">{{ $lead->interest_levels }}</p>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Data de Cadastro</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">{{ $lead->created_at->format('d/m/Y') }}</p>
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Data de Cadastro</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">{{ $lead->created_at->format('d/m/Y') }}</p>
                     </div>
                 </div>
 
                 {{-- Valor Estimado --}}
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Valor Estimado</label>
-                    <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">R$ {{ number_format($lead->estimated_value, 2, ',', '.') }}</p>
+                    <label class="block text-sm font-semibold text-gray-300 mb-1">Valor Estimado</label>
+                    <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">R$ {{ number_format($lead->estimated_value, 2, ',', '.') }}</p>
                 </div>
 
                 {{-- Motivo da perda --}}
                 @if($lead->pipelineStage->name === 'Perdida')
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Motivo da Perda</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">{{ $lead->lostReason->description }}</p>
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Motivo da Perda</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">{{ $lead->lostReason->description }}</p>
                     </div>
                 @endif
 
                 {{-- Encerramento --}}
                 @if(!is_null($lead->closed_at))
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-1">Data de Encerramento</label>
-                        <p class="w-full border-2 border-gray-300 rounded-xl px-5 py-3 shadow-sm bg-gray-50">{{ $lead->closed_at }}</p>
+                        <label class="block text-sm font-semibold text-gray-300 mb-1">Data de Encerramento</label>
+                        <p class="w-full border-2 border-gray-600 rounded-xl px-5 py-3 shadow-sm bg-gray-900 text-gray-200">{{ $lead->closed_at }}</p>
                     </div>
                 @endif
             </div>
@@ -95,17 +95,17 @@
             <div class="mt-10 flex flex-wrap justify-between gap-4">
 
                 <a href="{{ route('leads.index') }}"
-                   class="inline-block bg-gray-300 hover:bg-gray-400 text-gray-900 font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                   class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
                     Voltar
                 </a>
 
                 <a href="{{ route('leads.edit', $lead->id) }}"
-                   class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                   class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-orange-900/20 transition cursor-pointer transform hover:scale-[1.02]">
                     Editar
                 </a>
 
                 <a href="{{ route('leads.losts.create', $lead->id) }}"
-                   class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                   class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                     Marcar como Perdida
                 </a>
 
@@ -113,7 +113,7 @@
                 @switch($lead->pipeline_stage_id)
                     @case(1)
                         <a href="{{ route('leads.diagnostics.create', $lead->id) }}"
-                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                             Avançar Pipeline → Diagnóstico
                         </a>
                         @break
@@ -122,21 +122,21 @@
 
 
                         <a href="{{ route('leads.proposals.create', $lead->id) }}"
-                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                             Avançar Pipeline → Proposta
                         </a>
                         @break
 
                     @case(3)
                         <a href="{{ route('leads.contracts.create', ['lead_id' => $lead->id]) }}"
-                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                             Avançar Pipeline → Contrato
                         </a>
                         @break
 
                     @case(4)
                         <a href="{{ route('leads.actives.create', ['lead_id' => $lead->id]) }}"
-                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                           class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                             Tornar Cliente Ativo
                         </a>
                         @break
@@ -145,8 +145,8 @@
         </div>
 
         {{-- PIPELINE --}}
-        <div class="bg-white rounded-3xl shadow-2xl p-10 border border-gray-200">
-            <h3 class="text-3xl font-bold mb-6">Pipeline</h3>
+        <div class="bg-gray-800 rounded-3xl shadow-2xl p-10 border border-gray-700">
+            <h3 class="text-3xl font-bold mb-6 text-white">Pipeline</h3>
 
             <div class="flex flex-wrap gap-4">
 
@@ -156,7 +156,7 @@
                         Lista de Diagnósticos
                     </a>
                     <a href="{{ route('leads.diagnostics.show', ['lead_id' => $lead->id, 'diagnostic' => $lead->diagnostic->id]) }}"
-                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                         Ver Diagnóstico
                     </a>
                 @endif

@@ -3,61 +3,69 @@
 @section('title', 'Editar Diagnóstico #{{ $diagnostic->id }}')
 
 @section('content')
-    <div class="container mx-auto p-4">
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-2xl mx-auto">
-            <h1 class="text-2xl font-bold mb-6 text-gray-800">Editar Diagnóstico #{{ $diagnostic->id }}</h1>
-            <p class="mb-4 text-gray-600">Lead ID: **{{ $leadId }}**</p>
+    <div class="w-full max-w-2xl mx-auto bg-gray-800 rounded-3xl shadow-2xl p-10 border border-gray-700">
+        <h1 class="text-3xl font-extrabold text-center text-white mb-2">Editar Diagnóstico #{{ $diagnostic->id }}</h1>
+        <p class="text-center text-gray-400 mb-10">Lead ID: <span class="font-mono text-orange-500">#{{ $leadId }}</span></p>
 
-            <form action="{{ route('leads.diagnostics.update', ['lead_id' => $leadId, 'diagnostic' => $diagnostic->id]) }}" method="POST">
-                @csrf
-                @method('PUT') {{-- Método HTTP para atualização --}}
+        <form action="{{ route('leads.diagnostics.update', ['lead_id' => $leadId, 'diagnostic' => $diagnostic->id]) }}" method="POST" class="space-y-6">
+            @csrf
+            @method('PUT')
 
-                <div class="space-y-4">
-                    {{-- Campo: Descrição do Problema --}}
-                    <div>
-                        <label for="problem_description" class="block text-sm font-medium text-gray-700">Descrição do Problema</label>
-                        <textarea name="problem_description" id="problem_description" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 @error('problem_description') border-red-500 @enderror">{{ old('problem_description', $diagnostic->problem_description) }}</textarea>
-                        @error('problem_description')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+            {{-- Campo: Descrição do Problema --}}
+            <div>
+                <label for="problem_description" class="block text-sm font-semibold text-gray-300 mb-2">Descrição do Problema</label>
+                <textarea name="problem_description" id="problem_description" rows="3"
+                          class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">{{ old('problem_description', $diagnostic->problem_description) }}</textarea>
+                @error('problem_description')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-                    {{-- Campo: Necessidades do Cliente --}}
-                    <div>
-                        <label for="customer_needs" class="block text-sm font-medium text-gray-700">Necessidades do Cliente</label>
-                        <textarea name="customer_needs" id="customer_needs" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 @error('customer_needs') border-red-500 @enderror">{{ old('customer_needs', $diagnostic->customer_needs) }}</textarea>
-                        @error('customer_needs')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+            {{-- Campo: Necessidades do Cliente --}}
+            <div>
+                <label for="customer_needs" class="block text-sm font-semibold text-gray-300 mb-2">Necessidades do Cliente</label>
+                <textarea name="customer_needs" id="customer_needs" rows="3"
+                          class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">{{ old('customer_needs', $diagnostic->customer_needs) }}</textarea>
+                @error('customer_needs')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-                    {{-- Campo: Soluções Possíveis --}}
-                    <div>
-                        <label for="possible_solutions" class="block text-sm font-medium text-gray-700">Soluções Possíveis</label>
-                        <textarea name="possible_solutions" id="possible_solutions" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 @error('possible_solutions') border-red-500 @enderror">{{ old('possible_solutions', $diagnostic->possible_solutions) }}</textarea>
-                        @error('possible_solutions')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+            {{-- Campo: Soluções Possíveis --}}
+            <div>
+                <label for="possible_solutions" class="block text-sm font-semibold text-gray-300 mb-2">Soluções Possíveis</label>
+                <textarea name="possible_solutions" id="possible_solutions" rows="3"
+                          class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm placeholder-gray-500">{{ old('possible_solutions', $diagnostic->possible_solutions) }}</textarea>
+                @error('possible_solutions')
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-                    {{-- Campo: Nível de Urgência --}}
-                    <div>
-                        <label for="urgency_level" class="block text-sm font-medium text-gray-700">Nível de Urgência</label>
-                        <select name="urgency_level" id="urgency_level" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500">
-                            @foreach(['Baixa', 'Média', 'Alta'] as $level)
-                                <option value="{{ $level }}" {{ old('urgency_level', $diagnostic->urgency_level) == $level ? 'selected' : '' }}>{{ $level }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+            {{-- Campo: Nível de Urgência --}}
+            <div>
+                <label for="urgency_level" class="block text-sm font-semibold text-gray-300 mb-2">Nível de Urgência</label>
+                <select name="urgency_level" id="urgency_level"
+                        class="w-full bg-gray-900 border-2 border-gray-600 text-white focus:border-orange-500 focus:ring-orange-500 rounded-xl px-5 py-3 shadow-sm">
+                    @foreach(['Baixa', 'Média', 'Alta'] as $level)
+                        <option value="{{ $level }}" {{ old('urgency_level', $diagnostic->urgency_level) == $level ? 'selected' : '' }}>{{ $level }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-                <div class="mt-6 flex justify-between items-center">
-                    <a href="{{ route('leads.diagnostics.show', ['lead_id' => $leadId, 'diagnostic' => $diagnostic->id]) }}" class="text-gray-500 hover:text-gray-700">Cancelar</a>
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300">
-                        Atualizar Diagnóstico
-                    </button>
-                </div>
-            </form>
-        </div>
+            {{-- Botões --}}
+            <div class="flex items-center justify-between pt-4">
+                {{-- Cancelar --}}
+                <a href="{{ route('leads.diagnostics.show', ['lead_id' => $leadId, 'diagnostic' => $diagnostic->id]) }}"
+                   class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                    Cancelar
+                </a>
+
+                {{-- Atualizar --}}
+                <button type="submit"
+                        class="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-orange-900/20 transition transform hover:scale-[1.02] cursor-pointer">
+                    Atualizar Diagnóstico
+                </button>
+            </div>
+        </form>
     </div>
 @endsection
