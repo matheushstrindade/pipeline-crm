@@ -72,7 +72,7 @@
                                     {{ $contract->created_at->format('d/m/Y') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="{{ route('leads.contract.show', ['lead_id' => $contract->lead_id, 'contract' => $contract->id]) }}"
+                                    <a href="{{ route('leads.contracts.show', ['lead_id' => $contract->lead_id, 'contract' => $contract->id]) }}"
                                        class="text-indigo-600 hover:text-indigo-900 transition-colors" title="Visualizar">
                                         <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>

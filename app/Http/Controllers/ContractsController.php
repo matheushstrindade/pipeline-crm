@@ -117,7 +117,7 @@ class ContractsController extends Controller
 
             DB::commit();
 
-            return redirect()->route('leads.contract.show', ['lead_id' => $leadId, 'contract' => $contract->id])
+            return redirect()->route('leads.contracts.show', ['lead_id' => $leadId, 'contract' => $contract->id])
                 ->with('success', 'Contrato cadastrado com sucesso!');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -214,7 +214,7 @@ class ContractsController extends Controller
                 ]);
             }
 
-            return redirect()->route('leads.contract.show', ['lead_id' => $leadId, 'contract' => $contract->id])
+            return redirect()->route('leads.contracts.show', ['lead_id' => $leadId, 'contract' => $contract->id])
                 ->with('success', 'Contrato atualizado com sucesso!');
         } catch (\Exception $e) {
             Log::error('Erro ao atualizar contrato', [
@@ -241,7 +241,7 @@ class ContractsController extends Controller
 
             $contract->delete();
 
-            return redirect()->route('leads.contract.index', $leadId)
+            return redirect()->route('leads.contracts.index', $leadId)
                 ->with('success', 'Contrato excluído com sucesso!');
         } catch (\Exception $e) {
             Log::error('Erro ao excluir contrato', [
@@ -336,7 +336,7 @@ class ContractsController extends Controller
                 'happened_at' => $validated['happened_at'] ?? now(),
             ]);
 
-            return redirect()->route('leads.contract.show', ['lead_id' => $leadId, 'contract' => $contractId])
+            return redirect()->route('leads.contracts.show', ['lead_id' => $leadId, 'contract' => $contractId])
                 ->with('success', 'Interação registrada com sucesso!');
         } catch (\Exception $e) {
             Log::error('Erro ao registrar interação', [
@@ -394,7 +394,7 @@ class ContractsController extends Controller
                 'timestamp' => now()->toDateTimeString()
             ]);
 
-            return redirect()->route('leads.contract.show', ['lead_id' => $leadId, 'contract' => $contractId])
+            return redirect()->route('leads.contracts.show', ['lead_id' => $leadId, 'contract' => $contractId])
                 ->with('success', 'Contrato atribuído com sucesso!');
         } catch (\Exception $e) {
             Log::error('Erro ao atribuir contrato', [
@@ -461,7 +461,7 @@ class ContractsController extends Controller
 
                 DB::commit();
 
-                return redirect()->route('leads.contract.show', ['lead_id' => $leadId, 'contract' => $contractId])
+                return redirect()->route('leads.contracts.show', ['lead_id' => $leadId, 'contract' => $contractId])
                     ->with('success', 'Contrato cancelado e Lead marcado como perdido.');
             }
 
@@ -536,7 +536,7 @@ class ContractsController extends Controller
 
             DB::commit();
 
-            return redirect()->route('leads.contract.show', ['lead_id' => $leadId, 'contract' => $contractId])
+            return redirect()->route('leads.contracts.show', ['lead_id' => $leadId, 'contract' => $contractId])
                 ->with('success', 'Contrato assinado com sucesso! PDF gerado e email enviado.');
         } catch (\Exception $e) {
             DB::rollBack();

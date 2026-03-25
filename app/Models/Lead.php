@@ -19,6 +19,7 @@ class Lead extends Model
         'title',
         'description',
         'estimated_value',
+        'status',
         'is_won',
         'client_id',
         'owner_id',

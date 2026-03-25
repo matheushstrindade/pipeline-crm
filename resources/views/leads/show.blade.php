@@ -119,6 +119,8 @@
                         @break
 
                     @case(2)
+
+
                         <a href="{{ route('leads.proposals.create', $lead->id) }}"
                            class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                             Avançar Pipeline → Proposta
@@ -137,11 +139,6 @@
                            class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                             Tornar Cliente Ativo
                         </a>
-
-                        <a href="{{ route('leads.losts.create', ['lead_id' => $lead->id]) }}"
-                           class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
-                            Marcar como Perdida
-                        </a>
                         @break
                 @endswitch
             </div>
@@ -154,6 +151,10 @@
             <div class="flex flex-wrap gap-4">
 
                 @if($lead->diagnostic)
+                    <a href="{{ route('leads.diagnostics.index', ['lead_id' => $lead->id]) }}"
+                        class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                        Lista de Diagnósticos
+                    </a>
                     <a href="{{ route('leads.diagnostics.show', ['lead_id' => $lead->id, 'diagnostic' => $lead->diagnostic->id]) }}"
                        class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
                         Ver Diagnóstico
@@ -161,20 +162,25 @@
                 @endif
 
                 @if($lead->proposal)
-                    <a href="{{ route('leads.proposals.show', ['lead_id' => $lead->id, 'diagnostic_id' => $lead->diagnostic->id]) }}"
-                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
+                    <a href="{{ route('leads.proposals.index', ['lead_id' => $lead->id]) }}"
+                        class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
+                        Lista de Propostas
+                    </a>
+                    {{-- CORREÇÃO: 'diagnostic_id' -> 'proposal', e usando ID da proposta --}}
+                    <a href="{{ route('leads.proposals.show', ['lead_id' => $lead->id, 'proposal' => $lead->proposal->id]) }}"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
                         Ver Proposta
                     </a>
+
                 @endif
 
                 @if($lead->contract)
-                    <a href="{{ route('leads.contract.show', ['lead_id' => $lead->id]) }}"
-                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer transform hover:scale-[1.02]">
+                    <a href="{{ route('leads.contracts.show', ['lead_id' => $lead->id, 'proposal_id' => $lead->proposal->id]) }}"
+                       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition cursor-pointer">
                         Ver Contrato
                     </a>
                 @endif
             </div>
         </div>
-
     </div>
 @endsection

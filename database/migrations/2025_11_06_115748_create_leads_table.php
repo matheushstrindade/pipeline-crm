@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->float('estimated_value');
             $table->enum('status',['new','on_going', 'completed', 'lost'])->default('new');
+            $table->boolean('is_won')->default(false);
             $table->foreignId('client_id')
                 ->constrained('clients')
                 ->onDelete('restrict')

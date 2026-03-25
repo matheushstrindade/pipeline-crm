@@ -12,7 +12,7 @@
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Cadastrar Novo Contrato</h2>
                     <p class="mt-1 text-sm text-gray-500">Preencha os dados abaixo para criar um novo contrato</p>
                 </div>
-                <a href="{{ route('leads.contract.index', $leadId) }}"
+                <a href="{{ route('leads.contracts.index', $leadId) }}"
                    class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
@@ -59,7 +59,7 @@
         @endif
 
         {{-- Form Card --}}
-        <form method="POST" action="{{ route('leads.contract.store', $leadId) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('leads.contracts.store', $leadId) }}" enctype="multipart/form-data">
             @csrf
             
             <div class="bg-white shadow-lg rounded-xl border border-gray-200 overflow-hidden">
@@ -201,7 +201,7 @@
                 {{-- Actions --}}
                 <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
                     <div class="flex flex-col sm:flex-row justify-end gap-3">
-                        <a href="{{ route('leads.contract.index', $leadId) }}"
+                        <a href="{{ route('leads.contracts.index', $leadId) }}"
                            class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
                             Cancelar
                         </a>

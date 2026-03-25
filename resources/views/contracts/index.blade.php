@@ -12,7 +12,7 @@
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Contratos</h2>
                     <p class="mt-1 text-sm text-gray-500">Lista de contratos do lead</p>
                 </div>
-                <a href="{{ route('leads.contract.create', $leadId) }}"
+                <a href="{{ route('leads.contracts.create', $leadId) }}"
                    class="inline-flex items-center justify-center px-4 py-3 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
@@ -102,7 +102,7 @@
                                     {{ $contract->created_at->format('d/m/Y') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                    <a href="{{ route('leads.contract.show', ['lead_id' => $leadId, 'contract' => $contract->id]) }}"
+                                    <a href="{{ route('leads.contracts.show', ['lead_id' => $leadId, 'contract' => $contract->id]) }}"
                                        class="text-indigo-600 hover:text-indigo-900 transition-colors" title="Visualizar">
                                         <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
